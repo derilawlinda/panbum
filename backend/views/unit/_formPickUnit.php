@@ -123,7 +123,7 @@ $this->registerJs($search);
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-4 col-sm-offset-3">
+		<div class="col-sm-6 col-sm-offset-3">
        <?= $form->field($modelUnit, 'no_unit')
 											->dropDownList(
 												[],
@@ -155,25 +155,7 @@ $this->registerJs($search);
 											->label(false);?>
 	
 			</div>
-	<div id="inputText" class="col-sm-2 col-sm-offset-1" style="margin-left: 6px;display:none">
-		<?= $form->field($modelUnit, 'no_unit')->textInput(['placeholder' => 'No Unit Baru',
-															'id'=>"unitInputText",
-															'onchange'=>'
-																if($(this).val() == ""){
-																	$("#submitButton").prop("disabled", true);
-																};
-															
-															',
-															'onkeyup' => '
-																
-																if($(this).val() == ""){
-																	$("#submitButton").prop("disabled", true);
-																	
-																	
-																}else{
-																	$("#submitButton").prop("disabled", false);
-																};'])->label(false) ?>
-	</div>
+	
 	</div>
 	
 	
@@ -198,13 +180,7 @@ $this->registerJs($search);
 
 $(document).ready(function () {
         
-		$('body').on('beforeSubmit', 'form#form-pilih-unit', function () {
-            if($("#unitInputText").val() != ""){
-				$("#unitdropdown").attr("name","notused");
-			}else{
-				$("#unitInputText").attr("name","notused");
-				$("#unitdropdown").attr("name","Unit[no_unit]");
-			};
+		
 			var form = $(this);
 			// return false if form still have some validation errors
             if (form.find('.has-error').length) 
