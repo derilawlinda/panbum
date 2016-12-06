@@ -92,7 +92,7 @@ class PekKonssipilQuery extends \yii\db\ActiveQuery {
 
 
         if (count($query) > 0) {
-            return $query->id_cod;
+            return $query->id_konssipil;
         } else {
             return 0;
         }

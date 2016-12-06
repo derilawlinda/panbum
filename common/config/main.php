@@ -23,12 +23,11 @@ return [
 			'class' => 'lo\modules\noty\Module',
 		]
     ],
-	'as access' => [
+	/* 'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
-            'site/*',
-			'admin/*',
-			'debug/*'
+            '*'
+			
            
             // The actions listed here will be allowed to everyone including guests.
             // So, 'admin/*' should not appear here in the production, of course.
@@ -36,7 +35,7 @@ return [
             // add a lot of actions here until you finally completed setting up rbac,
             // otherwise you may not even take a first step.
         ]
-    ],
+    ], */
     'components' => [
 		
         'cache' => [
@@ -47,9 +46,9 @@ return [
 		],
 		'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=pabum',
+            'dsn' => 'mysql:host=localhost;dbname=formatpantau',
             'username' => 'root',
-            'password' => '',
+            'password' => 'pabum2013',
             'charset' => 'utf8',
         ]
     ],

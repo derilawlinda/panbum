@@ -86,7 +86,7 @@ class PekKelayakanQuery extends \yii\db\ActiveQuery
     {
        
 	   $query = PekKelayakan::find()
-                                ->select('id_cod')
+                                ->select('id_kelayakan')
 				->where(['id_unit' => $id_unit])
                                 ->andWhere('DATE_FORMAT(submitted_date, "%Y-%m") <= '.'"'.$year.'-'.$month.'"')
 				->orderBy('submitted_date DESC')

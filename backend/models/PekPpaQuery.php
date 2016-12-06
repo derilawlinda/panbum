@@ -48,4 +48,21 @@ class PekPpaQuery extends \yii\db\ActiveQuery
 			return 0;
 		}
 	}
+    public function latestidbymonthyear($id_unit, $month, $year) {
+
+        $query = PekPpa::find()
+                ->select('id')
+                ->where(['id_unit' => $id_unit])
+                ->andWhere('DATE_FORMAT(submitted_date, "%Y-%m") <= ' . '"' . $year . '-' . $month . '"')
+                ->orderBy('submitted_date DESC')
+                ->limit(1)
+                ->one();
+
+
+        if (count($query) > 0) {
+            return $query->id;
+        } else {
+            return 0;
+        }
+    }
 }

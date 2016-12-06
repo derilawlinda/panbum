@@ -91,8 +91,8 @@ class PekCodQuery extends \yii\db\ActiveQuery
 	   $query = PekCod::find()
                                 ->select('id_cod')
 				->where(['id_unit' => $id_unit])
-                                ->andWhere('DATE_FORMAT(input_date, "%Y-%m") <= '.'"'.$year.'-'.$month.'"')
-				->orderBy('input_date DESC')
+                                ->andWhere('DATE_FORMAT(submitted_date, "%Y-%m") <= '.'"'.$year.'-'.$month.'"')
+				->orderBy('submitted_date DESC')
 				->limit(1)
 				->one();
 				

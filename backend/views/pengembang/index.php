@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
+/* @var $searchModel backend\models\PengembangSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 use yii\helpers\Html;
@@ -18,20 +19,23 @@ $this->registerJs($search);
 <div class="pengembang-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Pengembang', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-<?php 
+   
+    <div class="search-form" style="display:none">
+        <?=  $this->render('_search', ['model' => $searchModel]); ?>
+    </div>
+    <?php 
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
-        'id_pengembang',
+        ['attribute'=>'id_pengembang', 'visible'=> false],
         'nama',
         'alamat',
-        'dirut',
-        'user',
-        'tgl',
-        'izin',
+        ['attribute'=>'dirut',
+         'label'=>'Direktur Utama'
+        ],
+        ['attribute'=>'remark',
+          'label'=>'Catatan'],
         [
             'class' => 'yii\grid\ActionColumn',
         ],
@@ -39,6 +43,7 @@ $this->registerJs($search);
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
         'columns' => $gridColumn,
         'pjax' => true,
         'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-pengembang']],
@@ -68,5 +73,10 @@ $this->registerJs($search);
             ]) ,
         ],
     ]); ?>
-
+    
+<div class="well">
+     <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
+</div>
 </div>

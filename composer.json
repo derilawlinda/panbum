@@ -12,7 +12,7 @@
         "irc": "irc://irc.freenode.net/yii",
         "source": "https://github.com/yiisoft/yii2"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": ">=2.0.6",
@@ -29,7 +29,11 @@
         "kartik-v/yii2-tabs-x": "@dev",
         "kartik-v/yii2-field-range": "*",
         "loveorigami/yii2-notification-wrapper": "*",
-        "bower-asset/noty": "^2.3"
+        "bower-asset/noty": "^2.3",
+        "2amigos/yii2-chartjs-widget": "~2.0",
+        "dektrium/yii2-user": "0.9.*@dev",
+        "nex/yii2-chosen": "*",
+        "wbraganca/yii2-dynamicform": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

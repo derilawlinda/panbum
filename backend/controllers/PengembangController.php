@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Pengembang;
-use yii\data\ActiveDataProvider;
+use backend\models\PengembangSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -32,11 +32,18 @@ class PengembangController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Pengembang::find(),
-        ]);
+        $model = new Pengembang();
+    
+        if ($model->load(Yii::$app->request->post()) && $model->save())
+        {
+            $model = new Pengembang(); //reset model
+        }
+        $searchModel = new PengembangSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'model'=>$model,
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -49,12 +56,12 @@ class PengembangController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        $providerUnit = new \yii\data\ArrayDataProvider([
-            'allModels' => $model->units,
+        $providerPltp = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->pltps,
         ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'providerUnit' => $providerUnit,
+            'providerPltp' => $providerPltp,
         ]);
     }
 
@@ -86,7 +93,7 @@ class PengembangController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+        if ($model->loadAll(Yii::$app->request->post(),['pltps']) && $model->saveAll(['pltps'])) {
             return $this->redirect(['view', 'id' => $model->id_pengembang]);
         } else {
             return $this->render('update', [
@@ -127,19 +134,19 @@ class PengembangController extends Controller
     
     /**
     * Action to load a tabular form grid
-    * for Unit
+    * for Pltp
     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
     *
     * @return mixed
     */
-    public function actionAddUnit()
+    public function actionAddPltp()
     {
         if (Yii::$app->request->isAjax) {
-            $row = Yii::$app->request->post('Unit');
+            $row = Yii::$app->request->post('Pltp');
             if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
                 $row[] = [];
-            return $this->renderAjax('_formUnit', ['row' => $row]);
+            return $this->renderAjax('_formPltp', ['row' => $row]);
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }

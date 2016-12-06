@@ -1,14 +1,14 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Wkp;
+use backend\models\Wkp;
 
 /**
- * app\models\WkpSearch represents the model behind the search form about `app\models\Wkp`.
+ * backend\models\WkpSearch represents the model behind the search form about `backend\models\Wkp`.
  */
  class WkpSearch extends Wkp
 {
@@ -19,7 +19,8 @@ use app\models\Wkp;
     {
         return [
             [['id_wkp'], 'integer'],
-            [['nama', 'lapangan', 'peta'], 'safe'],
+            [['nama', 'skwkp', 'lapangan', 'remark', 'pem_izin'], 'safe'],
+            [['luas'], 'number'],
         ];
     }
 
@@ -45,6 +46,9 @@ use app\models\Wkp;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 5
+             ]
         ]);
 
         $this->load($params);
@@ -57,11 +61,14 @@ use app\models\Wkp;
 
         $query->andFilterWhere([
             'id_wkp' => $this->id_wkp,
+            'luas' => $this->luas,
         ]);
 
         $query->andFilterWhere(['like', 'nama', $this->nama])
+            ->andFilterWhere(['like', 'skwkp', $this->skwkp])
             ->andFilterWhere(['like', 'lapangan', $this->lapangan])
-            ->andFilterWhere(['like', 'peta', $this->peta]);
+            ->andFilterWhere(['like', 'remark', $this->remark])
+            ->andFilterWhere(['like', 'pem_izin', $this->pem_izin]);
 
         return $dataProvider;
     }

@@ -11,11 +11,11 @@ use Yii;
  * @property string $nama
  * @property string $skwkp
  * @property string $lapangan
- * @property string $peta
- * @property string $id_pengembang
+ * @property string $remark
+ * @property double $luas
+ * @property string $pem_izin
  *
  * @property \backend\models\Pltp[] $pltps
- * @property \backend\models\Pengembang $pengembang
  */
 class Wkp extends \yii\db\ActiveRecord
 {
@@ -27,9 +27,9 @@ class Wkp extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_pengembang'], 'required'],
-            [['id_pengembang'], 'integer'],
-            [['nama', 'skwkp', 'lapangan', 'peta','remark'], 'string', 'max' => 255]
+            [['luas'], 'number'],
+            [['pem_izin'], 'required'],
+            [['nama', 'skwkp', 'lapangan', 'remark', 'pem_izin'], 'string', 'max' => 255]
         ];
     }
     
@@ -51,8 +51,9 @@ class Wkp extends \yii\db\ActiveRecord
             'nama' => 'Nama',
             'skwkp' => 'Skwkp',
             'lapangan' => 'Lapangan',
-            'peta' => 'Peta',
-            'id_pengembang' => 'Id Pengembang',
+            'remark' => 'Remark',
+            'luas' => 'Luas',
+            'pem_izin' => 'Pem Izin',
         ];
     }
     
@@ -63,14 +64,6 @@ class Wkp extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\backend\models\Pltp::className(), ['id_wkp' => 'id_wkp']);
     }
-        
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPengembang()
-    {
-        return $this->hasOne(\backend\models\Pengembang::className(), ['id_pengembang' => 'id_pengembang']);
-    }
     
     /**
      * @inheritdoc
@@ -80,4 +73,6 @@ class Wkp extends \yii\db\ActiveRecord
     {
         return new \backend\models\WkpQuery(get_called_class());
     }
+    
+   
 }

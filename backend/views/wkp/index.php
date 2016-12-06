@@ -6,6 +6,7 @@
 use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
+use yii\widgets\Pjax;
 
 $this->title = 'Wkp';
 $this->params['breadcrumbs'][] = $this->title;
@@ -17,23 +18,26 @@ $this->registerJs($search);
 ?>
 <div class="wkp-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1></h1>
 
-    <p>
-        <?= Html::a('Create Wkp', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+   
 <?php 
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
-        'id_wkp',
+        ['attribute'=>'id_wkp','visible'=>false],
         'nama',
-        'lapangan',
-        'peta',
+        ['attribute'=>'skwkp',
+          'label'=>'SK WKP'  ],
+        ['attribute'=>'luas',
+          'label'=>'Luas(Ha)'  ],
+        ['attribute'=>'pem_izin',
+          'label'=>'Pemegang Izin'  ],
         [
             'class' => 'yii\grid\ActionColumn',
         ],
     ]; 
     ?>
+ 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => $gridColumn,
@@ -43,6 +47,7 @@ $this->registerJs($search);
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),
         ],
+        'filterModel' => $wkpSearchModel,
         'export' => false,
         // your toolbar can include the additional full export menu
         'toolbar' => [
@@ -65,5 +70,11 @@ $this->registerJs($search);
             ]) ,
         ],
     ]); ?>
-
+  
+    
+<div class="well">
+     <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
+</div>
 </div>

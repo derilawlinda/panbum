@@ -16,9 +16,20 @@ class Pltp extends BasePltp
     {
         return array_replace_recursive(parent::rules(),
 	    [
-            [['id_wkp'], 'integer'],
-            [['nama_pltp'], 'string', 'max' => 255]
+            [['id_wkp', 'id_pengembang'], 'integer'],
+            [['nama_pltp', 'remark'], 'string', 'max' => 255]
         ]);
+    }
+    
+    public function findWkpByUserId($userid)
+    {
+        $rows = (new \yii\db\Query())
+            ->select(['wkp.id_wkp', 'wkp.nama'])
+            ->from('pltp')
+            ->join('LEFT JOIN', 'wkp', 'pltp.id_wkp = wkp.id_wkp')
+            ->where(['id_user' => $userid])
+            ->all();
+        return $rows;
     }
 	
 }

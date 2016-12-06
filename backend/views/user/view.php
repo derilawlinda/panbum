@@ -2,56 +2,75 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use mdm\admin\components\Helper;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $model mdm\admin\models\User */
+/* @var $model backend\models\User */
 
 $this->title = $model->username;
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Penugasan PLTP', 'url' => ['']];
 $this->params['breadcrumbs'][] = $this->title;
-
-$controllerId = $this->context->uniqueId . '/';
 ?>
 <div class="user-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="row">
+        <div class="col-sm-9">
+            <h2><?= 'User'.' '. Html::encode($this->title) ?></h2>
+        </div>
+       
+    </div>
 
-    <p>
-        <?php
-        if ($model->status == 0 && Helper::checkRoute($controllerId . 'activate')) {
-            echo Html::a('Activate', ['activate', 'id' => $model->id], [
-                'class' => 'btn btn-primary',
-                'data' => [
-                    'confirm' => 'Are you sure you want to activate this user?',
-                    'method' => 'post',
-                ],
-            ]);
-        }
-        ?>
-        <?php
-        if (Helper::checkRoute($controllerId . 'delete')) {
-            echo Html::a('Delete', ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                    'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                    'method' => 'post',
-                ],
-            ]);
-        }
-        ?>
-    </p>
-
-    <?=
-    DetailView::widget([
+    <div class="row">
+        <div class="col-sm-11">
+<?php 
+    $gridColumn = [
+        ['attribute' => 'id', 'visible' => false],
+        'username',
+        'email:email'
+        
+    ];
+    echo DetailView::widget([
         'model' => $model,
-        'attributes' => [
-            'username',
-            'email:email',
-            'created_at:date',
-            'status',
+        'attributes' => $gridColumn
+    ]); 
+?>
+    </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-11">
+<?php
+if($providerPltp->totalCount){
+    $gridColumnPltp = [
+        ['class' => 'yii\grid\SerialColumn'],
+            ['attribute' => 'id', 'visible' => false],
+            [
+                'attribute' => 'wkp.id_wkp',
+                'label' => 'Id Wkp'
+            ],
+            'nama_pltp',
+            'remark',
+            [
+                'attribute' => 'pengembang.id_pengembang',
+                'label' => 'Id Pengembang'
+            ],
+                ];
+    echo Gridview::widget([
+        'dataProvider' => $providerPltp,
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-pltp']],
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Pltp'),
         ],
-    ])
-    ?>
-
+        'export' => false,
+        'columns' => $gridColumnPltp
+    ]);
+}
+?>
+    
+        </div>
+    </div>
+    
+   
 </div>

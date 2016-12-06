@@ -34,6 +34,40 @@ class Waktu extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public function afterFind ()
+    {
+            // convert to display format
+		($this->pelelangan_mulai == "1970-01-01" || $this->pelelangan_mulai == "") ? $this->pelelangan_mulai = "" : $this->pelelangan_mulai = date ('d-m-Y', strtotime ($this->pelelangan_mulai));
+		($this->pelelangan_akhir == "1970-01-01" || $this->pelelangan_akhir == "") ? $this->pelelangan_akhir = "" : $this->pelelangan_akhir = date ('d-m-Y', strtotime ($this->pelelangan_akhir));
+		($this->penerbitan_mulai == "1970-01-01" || $this->penerbitan_mulai == "") ? $this->penerbitan_mulai = "" : $this->penerbitan_mulai = date ('d-m-Y', strtotime ($this->penerbitan_mulai));
+		($this->penerbitan_akhir == "1970-01-01" || $this->penerbitan_akhir == "") ? $this->penerbitan_akhir = "" : $this->penerbitan_akhir = date ('d-m-Y', strtotime ($this->penerbitan_akhir));
+		($this->eksplorasi_mulai == "1970-01-01" || $this->eksplorasi_mulai == "") ? $this->eksplorasi_mulai = "" : $this->eksplorasi_mulai = date ('d-m-Y', strtotime ($this->eksplorasi_mulai));
+		($this->eksplorasi_akhir == "1970-01-01" || $this->eksplorasi_akhir == "") ? $this->eksplorasi_akhir = "" : $this->eksplorasi_akhir = date ('d-m-Y', strtotime ($this->eksplorasi_akhir));
+		($this->eksploitasi_mulai == "1970-01-01" || $this->eksploitasi_mulai == "") ? $this->eksploitasi_mulai = "" : $this->eksploitasi_mulai = date ('d-m-Y', strtotime ($this->eksploitasi_mulai));
+		($this->eksploitasi_akhir == "1970-01-01" || $this->eksploitasi_akhir == "") ? $this->eksploitasi_akhir = "" : $this->eksploitasi_akhir = date ('d-m-Y', strtotime ($this->eksploitasi_akhir));
+		($this->cod_mulai == "1970-01-01" || $this->cod_mulai == "") ? $this->cod_mulai = "" : $this->cod_mulai = date ('d-m-Y', strtotime ($this->cod_mulai));
+		($this->cod_akhir == "1970-01-01" || $this->cod_akhir == "") ? $this->cod_akhir = "" : $this->cod_akhir = date ('d-m-Y', strtotime ($this->cod_akhir));
+        
+        
+        
+        parent::afterFind();
+    }
+    public function beforeSave($insert)
+    {
+        // convert to storage format
+        $this->pelelangan_mulai ? $this->pelelangan_mulai = \DateTime::createFromFormat('d-m-Y', $this->pelelangan_mulai)->format('Y-m-d') : "";
+        $this->pelelangan_akhir ? $this->pelelangan_akhir = \DateTime::createFromFormat('d-m-Y', $this->pelelangan_akhir)->format('Y-m-d') : "";
+        $this->penerbitan_mulai  ? $this->penerbitan_mulai= \DateTime::createFromFormat('d-m-Y', $this->penerbitan_mulai)->format('Y-m-d') : "";
+        $this->penerbitan_akhir ? $this->penerbitan_akhir = \DateTime::createFromFormat('d-m-Y', $this->penerbitan_akhir)->format('Y-m-d') : "";
+        $this->eksplorasi_mulai  ? $this->eksplorasi_mulai = \DateTime::createFromFormat('d-m-Y', $this->eksplorasi_mulai)->format('Y-m-d') : "";
+        $this->eksplorasi_akhir ? $this->eksplorasi_akhir = \DateTime::createFromFormat('d-m-Y', $this->eksplorasi_akhir)->format('Y-m-d') : "";
+        $this->eksploitasi_mulai ? $this->eksploitasi_mulai = \DateTime::createFromFormat('d-m-Y', $this->eksploitasi_mulai)->format('Y-m-d') : "";
+        $this->eksploitasi_akhir ? $this->eksploitasi_akhir = \DateTime::createFromFormat('d-m-Y', $this->eksploitasi_akhir)->format('Y-m-d') :"";
+        $this->cod_mulai ? $this->cod_mulai = \DateTime::createFromFormat('d-m-Y', $this->cod_mulai)->format('Y-m-d'):"";
+        $this->cod_akhir ? $this->cod_akhir = \DateTime::createFromFormat('d-m-Y', $this->cod_akhir)->format('Y-m-d'):"";
+       
+        return parent::beforeSave($insert);
+    }
     public function rules()
     {
         return [

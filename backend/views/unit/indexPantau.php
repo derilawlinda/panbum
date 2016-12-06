@@ -94,7 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="col-sm-3" style="padding-left:15px;">
                 <?=
-                        $form->field($modelUnit, 'no_unit')
+                        $form->field($modelUnit, 'id_unit')
                         ->dropDownList(
                                 [], ['prompt' => 'Pilih Unit..',
                             'id' => 'unitdropdown',

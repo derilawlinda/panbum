@@ -51,8 +51,8 @@ class UnitDetailProduksiQuery extends \yii\db\ActiveQuery {
         $query = UnitDetailProduksi::find()
                 ->select('id')
                 ->where(['id_unit' => $id_unit])
-                ->andWhere('DATE_FORMAT(created_date, "%Y-%m") <= ' . '"' . $year . '-' . $month . '"')
-                ->orderBy('created_date DESC')
+                ->andWhere('DATE_FORMAT(created_at, "%Y-%m") <= ' . '"' . $year . '-' . $month . '"')
+                ->orderBy('created_at DESC')
                 ->limit(1)
                 ->one();
 

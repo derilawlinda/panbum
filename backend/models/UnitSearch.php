@@ -18,9 +18,10 @@ use backend\models\Unit;
     public function rules()
     {
         return [
-            [['id_unit', 'id_pltp','no_unit'], 'integer'],
-            [['tahap', 'prov', 'kabkot'], 'safe'],
-            [['investasi', 'potensi', 'rencana'], 'number'],
+            [['id_pltp'], 'required'],
+            [['id_pltp', 'no_unit'], 'integer'],
+            [['updated_at', 'created_at'], 'safe'],
+            [['updated_by', 'created_by'], 'string', 'max' => 255]
         ];
     }
 
@@ -40,87 +41,33 @@ use backend\models\Unit;
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
-		
-        $query = Unit::find()
-				->select("unit.id_unit,unit.id_pltp,unit.tahap,unit.investasi,unit.no_unit,unit.potensi,unit.status,unit.rencana,unit.updated_at,unit.created_at,pltp.nama_pltp as pltpname,wkp.nama as namawkp")
-				->join('LEFT OUTER JOIN','pltp','pltp.id = unit.id_pltp')
-				->join('LEFT OUTER JOIN','wkp','wkp.id_wkp = pltp.id_wkp')
-				;
+    public function searchAdmin($params) 
+    { 
+        $query = Unit::find(); 
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-			'sort' => ['attributes' => ['namawkp','id_unit','tahap','pltpname','status','no_unit','updated_at','created_at']],
-			'pagination' => [
-				'pageSize' => 10,
-			],
-			
-        ]);
-		
-        $this->load($params);
+        $dataProvider = new ActiveDataProvider([ 
+            'query' => $query, 
+        ]); 
 
-        if (!$this->validate()) {
+        $this->load($params); 
+
+        if (!$this->validate()) { 
             // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
-            return $dataProvider;
-        }
+            // $query->where('0=1'); 
+            return $dataProvider; 
+        } 
 
         $query->andFilterWhere([
             'id_unit' => $this->id_unit,
             'id_pltp' => $this->id_pltp,
-            'investasi' => $this->investasi,
             'no_unit' => $this->no_unit,
-            'potensi' => $this->potensi,
-            'rencana' => $this->rencana,
+            'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at,
         ]);
 
-        $query->andFilterWhere(['like', 'tahap', $this->tahap])
-            ->andFilterWhere(['like', 'prov', $this->prov])
-            ->andFilterWhere(['like', 'kabkot', $this->kabkot]);
+        $query->andFilterWhere(['like', 'updated_by', $this->updated_by])
+            ->andFilterWhere(['like', 'created_by', $this->created_by]);
 
-        return $dataProvider;
-    }
-	
-	public function searchVerifikasi($params)
-    {
-		
-        $query = Unit::find()
-				->select("unit.id_unit,unit.id_pltp,unit.tahap,unit.investasi,unit.no_unit,unit.potensi,unit.status,unit.rencana,unit.updated_at,unit.created_at,pltp.nama_pltp as pltpname,wkp.nama as namawkp")
-				->join('LEFT OUTER JOIN','pltp','pltp.id = unit.id_pltp')
-				->join('LEFT OUTER JOIN','wkp','wkp.id_wkp = pltp.id_wkp')
-				->where(["status"=>"S"]);
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-			'sort' => ['attributes' => ['namawkp','id_unit','tahap','pltpname','status','no_unit','updated_at','created_at']],
-			'pagination' => [
-				'pageSize' => 10,
-			],
-			
-        ]);
-		
-        $this->load($params);
-
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
-            return $dataProvider;
-        }
-
-        $query->andFilterWhere([
-            'id_unit' => $this->id_unit,
-            'id_pltp' => $this->id_pltp,
-            'investasi' => $this->investasi,
-            'no_unit' => $this->no_unit,
-            'potensi' => $this->potensi,
-            'rencana' => $this->rencana,
-        ]);
-
-        $query->andFilterWhere(['like', 'tahap', $this->tahap])
-            ->andFilterWhere(['like', 'prov', $this->prov])
-            ->andFilterWhere(['like', 'kabkot', $this->kabkot]);
-
-        return $dataProvider;
-    }
+        return $dataProvider; 
+    } 
 }

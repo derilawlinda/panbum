@@ -99,7 +99,7 @@ class PekGeosainsQuery extends \yii\db\ActiveQuery
 				
 		
 		if(count($query)>0){
-			return $query->id_cod;
+			return $query->id_geosains;
 		}else{
 			return 0;
 		}

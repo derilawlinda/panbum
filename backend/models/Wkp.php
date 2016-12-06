@@ -16,10 +16,21 @@ class Wkp extends BaseWkp
     {
         return array_replace_recursive(parent::rules(),
 	    [
-            [['id_pengembang'], 'required'],
-            [['id_pengembang'], 'integer'],
-            [['nama', 'skwkp', 'lapangan', 'peta'], 'string', 'max' => 255]
+            [['luas'], 'number'],
+            [['pem_izin'], 'required'],
+            [['nama', 'skwkp', 'lapangan', 'remark', 'pem_izin'], 'string', 'max' => 255]
         ]);
     }
+    public function jumlahWkp(){
+        $jumlahWkp = Wkp::find()->all();
+        return count($jumlahWkp);
+        
+    }
+    
+     /**
+     * @inheritdoc
+     * @return \backend\models\WkpQuery the active query used by this AR class.
+     */
+    
 	
 }

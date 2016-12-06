@@ -82,7 +82,7 @@ class PekTransmisiQuery extends \yii\db\ActiveQuery {
 
     public function latestidbymonthyear($id_unit, $month, $year) {
 
-        $query = PekCod::find()
+        $query = PekTransmisi::find()
                 ->select('id_transmisi')
                 ->where(['id_unit' => $id_unit])
                 ->andWhere('DATE_FORMAT(submitted_date, "%Y-%m") <= ' . '"' . $year . '-' . $month . '"')

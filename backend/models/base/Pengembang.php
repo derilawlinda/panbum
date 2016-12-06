@@ -14,9 +14,10 @@ use Yii;
  * @property string $user
  * @property string $tgl
  * @property string $izin
+ * @property integer $status
  * @property string $remark
  *
- * @property \backend\models\Wkp[] $wkps
+ * @property \backend\models\Pltp[] $pltps
  */
 class Pengembang extends \yii\db\ActiveRecord
 {
@@ -29,6 +30,7 @@ class Pengembang extends \yii\db\ActiveRecord
     {
         return [
             [['tgl'], 'safe'],
+            [['status'], 'integer'],
             [['nama', 'alamat', 'dirut', 'user', 'izin', 'remark'], 'string', 'max' => 255]
         ];
     }
@@ -54,6 +56,7 @@ class Pengembang extends \yii\db\ActiveRecord
             'user' => 'User',
             'tgl' => 'Tgl',
             'izin' => 'Izin',
+            'status' => 'Status',
             'remark' => 'Remark',
         ];
     }
@@ -61,9 +64,9 @@ class Pengembang extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getWkps()
+    public function getPltps()
     {
-        return $this->hasMany(\backend\models\Wkp::className(), ['id_pengembang' => 'id_pengembang']);
+        return $this->hasMany(\backend\models\Pltp::className(), ['id_pengembang' => 'id_pengembang']);
     }
     
     /**

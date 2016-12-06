@@ -1,5 +1,4 @@
 <?php
-
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -11,7 +10,6 @@ use yii\bootstrap\ActiveForm;
 use yii\widgets\Pjax;
 use lo\modules\noty\Wrapper;
 
-
 $this->title = 'Input Data';
 $this->params['breadcrumbs'][] = $this->title;
 $search = "$('.search-button').click(function(){
@@ -19,50 +17,52 @@ $search = "$('.search-button').click(function(){
 	return false;
 });";
 $this->registerJs($search);
-
 ?>
 <script src="//code.jquery.com/jquery-2.2.4.js"></script>
 <style>
 
-.content {
-    min-height: 250px;
-    padding: 15px;
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-top: 20px;
-}
+    .content {
+        min-height: 250px;
+        padding: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-top: 20px;
+    }
 
 </style>
-<?php echo Wrapper::widget([
-'layerClass' => 'lo\modules\noty\layers\Noty',
-'options' => [
+<?php
+echo Wrapper::widget([
+    'layerClass' => 'lo\modules\noty\layers\Noty',
+    'options' => [
         'dismissQueue' => true,
         'layout' => 'topRight',
         'timeout' => 1000,
         'theme' => 'relax',
     ]
-
-]); ?>
+]);
+?>
 <div class="inputdata-index">
 
-    
-	
-	<?php $form = ActiveForm::begin([
-									'layout' => 'horizontal',
-									'id'=> 'form-pilih-unit',
-									'fieldConfig' => [
-										'template' => "{input}"],
-									'action' => ['create-unit']]); ?>
-	<div class="well">
-	<div class="row">
-		<div class="col-sm-6 col-sm-offset-3">
-	<?= $form->field($modelWkp, 'id_wkp')
-											->dropDownList(
-												$wkpList,
-												[
-												'onchange' => '
+
+
+<?php
+$form = ActiveForm::begin([
+            'layout' => 'horizontal',
+            'id' => 'form-pilih-unit',
+            'fieldConfig' => [
+                'template' => "{input}"],
+            'action' => ['create-unit']]);
+?>
+    <div class="well">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <?=
+                        $form->field($modelWkp, 'id_wkp')
+                        ->dropDownList(
+                                $wkpList, [
+                            'onchange' => '
 													if(this.value != ""){
 															$("#pltpdropdown").prop("disabled", false);
 															$.get(
@@ -82,21 +82,23 @@ $this->registerJs($search);
 													
 													
 												',
-												 'prompt' => 'Pilih WKP..',
-												 'id'=>'wkpdropdown',
-												 'options' => ['class' => 'form-group invisible']
-												])
-											->label(false);?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-6 col-sm-offset-3">
-	<?= $form->field($modelUnit, 'id_pltp')
-											->dropDownList(
-												[],
-												['prompt' => 'Pilih PLTP..',
-												 'id' => 'pltpdropdown',
-												 'onchange' => '
+                            'prompt' => 'Pilih WKP..',
+                            'id' => 'wkpdropdown',
+                            'options' => ['class' => 'form-group invisible']
+                        ])
+                        ->label(false);
+                ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <?=
+                        $form->field($modelUnit, 'id_pltp')
+                        ->dropDownList(
+                                [], ['prompt' => 'Pilih PLTP..',
+                            'id' => 'pltpdropdown',
+							'disabled'=>'disabled',
+                            'onchange' => '
 													
 														if(this.value != ""){
 															$("#unitdropdown").prop("disabled", false);
@@ -106,7 +108,7 @@ $this->registerJs($search);
 																	function(res){
 																		
 																		$("#unitdropdown").html(res);
-																		$("#unitdropdown").append("<option value=\"9999\">Unit baru</option>");
+																		
 																	}
 																);
 														}else{
@@ -117,20 +119,20 @@ $this->registerJs($search);
 													
 												 
 												 '
-												 
-												])
-											->label(false);?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-6 col-sm-offset-3">
-       <?= $form->field($modelUnit, 'no_unit')
-											->dropDownList(
-												[],
-												['prompt' => 'Pilih Unit..',
-												 'id' => 'unitdropdown',
-												 'disabled'=>'disabled',
-												 'onchange' => '
+                        ])
+                        ->label(false);
+                ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <?=
+                        $form->field($modelUnit, 'id_unit')
+                        ->dropDownList(
+                                [], ['prompt' => 'Pilih Unit..',
+                            'id' => 'unitdropdown',
+                            'disabled' => 'disabled',
+                            'onchange' => '
 														console.log($(this).val());
 														if($(this).val() != ""){
 															if($(this).val() == 9999){
@@ -150,73 +152,73 @@ $this->registerJs($search);
 																$("#submitButton").prop("disabled", true);
 														
 														};'
-												 
-												])
-											->label(false);?>
-	
-			</div>
-	
-	</div>
-	
-	
-	
-	<div class="form-group">
-        <div class="col-lg-offset-1 col-lg-11">
-            <?= Html::submitButton('Input', ['class' => 'btn btn-primary','id' => 'submitButton',"disabled"=>"disabled"]) ?>
+                        ])
+                        ->label(false);
+                ?>
+
+            </div>
+           
         </div>
+
+
+
+        <div class="form-group">
+            <div class="col-lg-offset-1 col-lg-11">
+        <?= Html::submitButton('Input', ['class' => 'btn btn-primary', 'id' => 'submitButton', "disabled" => "disabled"]) ?>
+            </div>
+        </div>
+<?php $form = ActiveForm::end(); ?>
     </div>
-	<?php $form = ActiveForm::end(); ?>
-	</div>
-	
-	<div class="row">
-		<div id="inputData"> </div>
-	</div>
-	
-   
+
+    <div class="row">
+        <div id="inputData"> </div>
+    </div>
+
+
 
 </div>
 
 <script type="text/javascript">
 
-$(document).ready(function () {
-        
-		
-			var form = $(this);
-			// return false if form still have some validation errors
-            if (form.find('.has-error').length) 
+    $(document).ready(function () {
+
+        $('body').on('beforeSubmit', 'form#form-pilih-unit', function () {
+            var form = $(this);
+            // return false if form still have some validation errors
+            if (form.find('.has-error').length)
             {
                 return false;
             }
             // submit form
             $.ajax({
-            url    : form.attr('action'),
-            type   : 'get',
-            data   : form.serialize(),
-            success: function (response) 
-            {
-                
-                // $.pjax.reload('#note_update_id'); for pjax update
-                if(response == "Data Exist"){
-					return false;
-				}else{
-					$('.inputdata-index').html(response);
-				}
-				
-				
-                //console.log(getupdatedata);
-            },
-            error  : function () 
-            {
-                console.log('internal server error');
-            }
+                url: form.attr('action'),
+                type: 'get',
+                data: form.serialize(),
+                success: function (response)
+                {
+
+                    // $.pjax.reload('#note_update_id'); for pjax update
+                    if (response == "Data Exist") {
+                        return false;
+                    } else {
+                        $('.inputdata-index').html(response);
+                    }
+
+
+                    //console.log(getupdatedata);
+                },
+                error: function ()
+                {
+                    console.log('internal server error');
+                }
             });
             return false;
-         });
-		
-		
-		
-		 
-		 
+        });
+
+
+
+
+
     });
 
 </script>

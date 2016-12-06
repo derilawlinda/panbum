@@ -10,7 +10,10 @@ use Yii;
  * @property string $id
  * @property string $id_wkp
  * @property string $nama_pltp
+ * @property string $remark
+ * @property string $id_pengembang
  *
+ * @property \backend\models\Pengembang $pengembang
  * @property \backend\models\Wkp $wkp
  * @property \backend\models\Unit[] $units
  */
@@ -24,8 +27,8 @@ class Pltp extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_wkp'], 'integer'],
-            [['nama_pltp'], 'string', 'max' => 255]
+            [['id_wkp', 'id_pengembang'], 'integer'],
+            [['nama_pltp', 'remark'], 'string', 'max' => 255]
         ];
     }
     
@@ -46,15 +49,25 @@ class Pltp extends \yii\db\ActiveRecord
             'id' => 'ID',
             'id_wkp' => 'Id Wkp',
             'nama_pltp' => 'Nama Pltp',
+            'remark' => 'Remark',
+            'id_pengembang' => 'Id Pengembang',
         ];
     }
     
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getPengembang()
+    {
+        return $this->hasOne(\backend\models\Pengembang::className(), ['id_pengembang' => 'id_pengembang']);
+    }
+        
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getWkp()
     {
-        return $this->hasOne(\backend\models\Wkp::className(), ['id_wkp' => 'id_wkp'])->inverseOf('pltps');
+        return $this->hasOne(\backend\models\Wkp::className(), ['id_wkp' => 'id_wkp']);
     }
         
     /**
@@ -62,7 +75,7 @@ class Pltp extends \yii\db\ActiveRecord
      */
     public function getUnits()
     {
-        return $this->hasMany(\backend\models\Unit::className(), ['id_pltp' => 'id'])->inverseOf('pltp');
+        return $this->hasMany(\backend\models\Unit::className(), ['id_pltp' => 'id']);
     }
     
     /**

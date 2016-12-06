@@ -1,9 +1,9 @@
 <?php
 
 namespace backend\models\base;
-
-use Yii;
 use yii\behaviors\TimestampBehavior;
+
+
 
 /**
  * This is the base model class for table "unit_detail_produksi".
@@ -21,7 +21,10 @@ use yii\behaviors\TimestampBehavior;
 class UnitDetailProduksi extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
-
+    public $cumuap;
+    public $cumlistrik; 
+    public $jumlahgas;
+    public $jumlahlistrik;
     /**
      * @inheritdoc
      */
@@ -31,7 +34,7 @@ class UnitDetailProduksi extends \yii\db\ActiveRecord
             [['id_unit'], 'required'],
             [['id_unit','status_produksi'], 'integer'],
             [['gas', 'listrik'], 'number'],
-            [['udated_at', 'created_at'], 'safe'],
+            [['udated_at', 'created_at','cumuap','cumlistrik'], 'safe'],
             [['remark'], 'string', 'max' => 255]
         ];
     }

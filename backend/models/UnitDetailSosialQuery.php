@@ -80,7 +80,7 @@ class UnitDetailSosialQuery extends \yii\db\ActiveQuery {
         $query = UnitDetailSosial::find()
                 ->select('id_sosial')
                 ->where(['id_unit' => $id_unit])
-                ->andWhere('DATE_FORMAT(inputs_date, "%Y-%m") <= ' . '"' . $year . '-' . $month . '"')
+                ->andWhere('DATE_FORMAT(input_date, "%Y-%m") <= ' . '"' . $year . '-' . $month . '"')
                 ->orderBy('input_date DESC')
                 ->limit(1)
                 ->one();

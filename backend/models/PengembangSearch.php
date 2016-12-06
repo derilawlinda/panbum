@@ -1,14 +1,14 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Pengembang;
+use backend\models\Pengembang;
 
 /**
- * app\models\PengembangSearch represents the model behind the search form about `app\models\Pengembang`.
+ * backend\models\PengembangSearch represents the model behind the search form about `backend\models\Pengembang`.
  */
  class PengembangSearch extends Pengembang
 {
@@ -18,8 +18,8 @@ use app\models\Pengembang;
     public function rules()
     {
         return [
-            [['id_pengembang', 'izin'], 'integer'],
-            [['nama', 'alamat', 'dirut', 'user', 'tgl'], 'safe'],
+            [['id_pengembang', 'status'], 'integer'],
+            [['nama', 'alamat', 'dirut', 'user', 'tgl', 'izin', 'remark'], 'safe'],
         ];
     }
 
@@ -57,14 +57,16 @@ use app\models\Pengembang;
 
         $query->andFilterWhere([
             'id_pengembang' => $this->id_pengembang,
-            'user' => $this->user,
-            'izin' => $this->izin,
+            'tgl' => $this->tgl,
+            'status' => $this->status,
         ]);
 
         $query->andFilterWhere(['like', 'nama', $this->nama])
             ->andFilterWhere(['like', 'alamat', $this->alamat])
             ->andFilterWhere(['like', 'dirut', $this->dirut])
-            ->andFilterWhere(['like', 'tgl', $this->tgl]);
+            ->andFilterWhere(['like', 'user', $this->user])
+            ->andFilterWhere(['like', 'izin', $this->izin])
+            ->andFilterWhere(['like', 'remark', $this->remark]);
 
         return $dataProvider;
     }

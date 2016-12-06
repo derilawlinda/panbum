@@ -59,41 +59,35 @@ class UnitQuery extends \yii\db\ActiveQuery
 		
 		
 	}
-	public function countthismonthdata($no_unit,$id_pltp)
-    {
-        $this->andWhere("MONTH([[created_at]]) = MONTH(NOW())")
-		->andWhere("YEAR([[created_at]]) = YEAR(NOW())")
-		->andWhere("no_unit = ".$no_unit)
-		->andWhere("id_pltp = ".$id_pltp)
-		->asArray();
-		
-		return count($this->all());
-    }
+	
+        
         public function updatedidbymonthyear($idunit,$month,$year){
                 $model = new Unit();
-		$LatedDetailTanahId = $model->getUnitDetailTanahs()->latestidbymonthyear($idunit,$month,$year);
+		$LatestUnitDetailId = $model->getUnitDetails()->latestidbymonthyear($idunit,$month,$year);
+                $LatedDetailTanahId = $model->getUnitDetailTanahs()->latestidbymonthyear($idunit,$month,$year);
 		$LatesrDetailLahanId = $model->getUnitDetailLahans()->latestidbymonthyear($idunit,$month,$year);
 		$LatestUnitDetailIzinId =	$model->getUnitDetailIzins()->latestidbymonthyear($idunit,$month,$year);
-		$LatestUnitDetailProduksiId = $model->getUnitDetailProduksis()->latestid($idunit);
-		$LatestUnitDetailSosialId =	$model->getUnitDetailSosials()->latestid($idunit);
-		$LatestPekerjaanGeosainsId =	$model->getPekGeosains()->latestid($idunit);
-		$LatestPemboranEksplorasiId =	$model->getPekEksplorasis()->latestid($idunit);
-		$LatestStudiKelayakanId =	$model->getPekKelayakans()->latestid($idunit);
-		$LatetPpaId =	$model->getPekPpas()->latestid($idunit);
-		$LatestUjiSumurId =	$model->getPekUjimonsumurs()->latestid($idunit);
-		$latestPengembanganSumurId = $model->getPekPengsumurs()->latestid($idunit);
-		$LatestKonstruksiSipilId = $model->getPekKonssipils()->latestid($idunit);
-		$LatestAccessRoadId = $model->getPekAccroads()->latestid($idunit);
-		$LatestEngineeringId = $model->getPekEngineerings()->latestid($idunit);
-		$LatestProcurementId = $model->getPekProcurements()->latestid($idunit);
-		$LatestConstructionId = $model->getPekConstructions()->latestid($idunit);
-		$LatestOverallepcId = $model->getPekOverallepcs()->latestid($idunit);
-		$LaestTransmisiId = $model->getPekTransmisis()->latestid($idunit);
-		$LatestCODId = $model->getPekCods()->latestid($idunit); 
-		$LatestFotoId = $model->getFotos()->latestid($idunit); 
-		$LatestWaktuId = $model->getWaktus()->latestid($idunit);
-		$LatestKendalaId = $model->getKendalas()->latestid($idunit);
+		$LatestUnitDetailProduksiId = $model->getUnitDetailProduksis()->latestidbymonthyear($idunit,$month,$year);
+		$LatestUnitDetailSosialId =	$model->getUnitDetailSosials()->latestidbymonthyear($idunit,$month,$year);
+		$LatestPekerjaanGeosainsId =	$model->getPekGeosains()->latestidbymonthyear($idunit,$month,$year);
+		$LatestPemboranEksplorasiId =	$model->getPekEksplorasis()->latestidbymonthyear($idunit,$month,$year);
+		$LatestStudiKelayakanId =	$model->getPekKelayakans()->latestidbymonthyear($idunit,$month,$year);
+		$LatetPpaId =	$model->getPekPpas()->latestidbymonthyear($idunit,$month,$year);
+		$LatestUjiSumurId =	$model->getPekUjimonsumurs()->latestidbymonthyear($idunit,$month,$year);
+		$latestPengembanganSumurId = $model->getPekPengsumurs()->latestidbymonthyear($idunit,$month,$year);
+		$LatestKonstruksiSipilId = $model->getPekKonssipils()->latestidbymonthyear($idunit,$month,$year);
+		$LatestAccessRoadId = $model->getPekAccroads()->latestidbymonthyear($idunit,$month,$year);
+		$LatestEngineeringId = $model->getPekEngineerings()->latestidbymonthyear($idunit,$month,$year);
+		$LatestProcurementId = $model->getPekProcurements()->latestidbymonthyear($idunit,$month,$year);
+		$LatestConstructionId = $model->getPekConstructions()->latestidbymonthyear($idunit,$month,$year);
+		$LatestOverallepcId = $model->getPekOverallepcs()->latestidbymonthyear($idunit,$month,$year);
+		$LaestTransmisiId = $model->getPekTransmisis()->latestidbymonthyear($idunit,$month,$year);
+		$LatestCODId = $model->getPekCods()->latestidbymonthyear($idunit,$month,$year); 
+		$LatestFotoId = $model->getFotos()->latestidbymonthyear($idunit,$month,$year); 
+		$LatestWaktuId = $model->getWaktus()->latestidbymonthyear($idunit,$month,$year);
+		$LatestKendalaId = $model->getKendalas()->latestidbymonthyear($idunit,$month,$year);
 		return array(
+                        "idunitdetail"=>$LatestUnitDetailId,
 			"idtanah"=>$LatedDetailTanahId,
 			"idlahan" => $LatesrDetailLahanId,
 			"idizin"=>$LatestUnitDetailIzinId,
@@ -124,7 +118,8 @@ class UnitQuery extends \yii\db\ActiveQuery
 	public function updatedid($idunit)
     {
         $model = new Unit();
-		$LatedDetailTanahId = $model->getUnitDetailTanahs()->latestid($idunit);
+		$LatestUnitDetailId = $model->getUnitDetails()->latestid($idunit);
+                $LatedDetailTanahId = $model->getUnitDetailTanahs()->latestid($idunit);
 		$LatesrDetailLahanId = $model->getUnitDetailLahans()->latestid($idunit);
 		$LatestUnitDetailIzinId =	$model->getUnitDetailIzins()->latestid($idunit);
 		$LatestUnitDetailProduksiId = $model->getUnitDetailProduksis()->latestid($idunit);
@@ -147,6 +142,7 @@ class UnitQuery extends \yii\db\ActiveQuery
 		$LatestWaktuId = $model->getWaktus()->latestid($idunit);
 		$LatestKendalaId = $model->getKendalas()->latestid($idunit);
 		return array(
+                        "idunitdetail"=>$LatestUnitDetailId,
 			"idtanah"=>$LatedDetailTanahId,
 			"idlahan" => $LatesrDetailLahanId,
 			"idizin"=>$LatestUnitDetailIzinId,

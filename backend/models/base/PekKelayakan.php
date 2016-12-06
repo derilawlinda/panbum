@@ -30,11 +30,11 @@ class PekKelayakan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-           
-            [['id_kelayakan', 'id_unit', 'status', 'confirmed'], 'integer'],
+            [['id_unit', 'status', 'confirmed'], 'integer'],
             [['submitted_date', 'confirmed_date'], 'safe'],
             [['target', 'capaian', 'remark'], 'string', 'max' => 255],
             [['file'], 'safe']
+			
         ];
     }
     

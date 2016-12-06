@@ -41,6 +41,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'user',
         'tgl',
         'izin',
+        'status',
+        'remark',
     ];
     echo DetailView::widget([
         'model' => $model,
@@ -51,31 +53,27 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <div class="row">
 <?php
-if($providerUnit->totalCount){
-    $gridColumnUnit = [
+if($providerPltp->totalCount){
+    $gridColumnPltp = [
         ['class' => 'yii\grid\SerialColumn'],
-            'id_unit',
+            ['attribute' => 'id', 'visible' => false],
             [
                 'attribute' => 'wkp.id_wkp',
                 'label' => 'Id Wkp'
             ],
-                        'investasi',
-            'prov',
-            'kabkot',
-            'no_unit',
-            'potensi',
-            'rencana',
-    ];
+            'nama_pltp',
+            'remark',
+                ];
     echo Gridview::widget([
-        'dataProvider' => $providerUnit,
+        'dataProvider' => $providerPltp,
         'pjax' => true,
-        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-unit']],
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-pltp']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
-            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Unit'),
+            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Pltp'),
         ],
         'export' => false,
-        'columns' => $gridColumnUnit
+        'columns' => $gridColumnPltp
     ]);
 }
 ?>

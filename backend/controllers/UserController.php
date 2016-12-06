@@ -3,86 +3,30 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\form\Login;
-use backend\models\form\PasswordResetRequest;
-use backend\models\form\ResetPassword;
-use backend\models\form\Signup;
-use backend\models\form\ChangePassword;
+use backend\models\base\MultipleModel as Model;
 use backend\models\User;
-use backend\models\searchs\User as UserSearch;
-use yii\base\InvalidParamException;
-use yii\web\BadRequestHttpException;
+use backend\models\UserSearch;
+use backend\models\Pltp;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
-use yii\base\UserException;
-use yii\mail\BaseMailer;
+use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
- * User controller
+ * UserController implements the CRUD actions for User model.
  */
 class UserController extends Controller
 {
-    private $_oldMailPath;
-
-    /**
-     * @inheritdoc
-     */
     public function behaviors()
     {
         return [
-//            'access' => [
-//                'class' => AccessControl::className(),
-//                'rules' => [
-//                    [
-//                        'actions' => ['signup', 'reset-password', 'login', 'request-password-reset'],
-//                        'allow' => true,
-//                        'roles' => ['?'],
-//                    ],
-//                    [
-//                        'actions' => ['logout', 'change-password', 'index', 'view', 'delete', 'activate'],
-//                        'allow' => true,
-//                        'roles' => ['@'],
-//                    ],
-//                ],
-//            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
-                    'logout' => ['post'],
-                    'activate' => ['post'],
                 ],
             ],
         ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function beforeAction($action)
-    {
-        if (parent::beforeAction($action)) {
-            if (Yii::$app->has('mailer') && ($mailer = Yii::$app->getMailer()) instanceof BaseMailer) {
-                /* @var $mailer BaseMailer */
-                $this->_oldMailPath = $mailer->getViewPath();
-                $mailer->setViewPath('@mdm/admin/mail');
-            }
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function afterAction($action, $result)
-    {
-        if ($this->_oldMailPath !== null) {
-            Yii::$app->getMailer()->setViewPath($this->_oldMailPath);
-        }
-        return parent::afterAction($action, $result);
     }
 
     /**
@@ -92,11 +36,11 @@ class UserController extends Controller
     public function actionIndex()
     {
         $searchModel = new UserSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->searchPenugasanPLTP(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -105,11 +49,107 @@ class UserController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($id) 
+    { 
+        $model = $this->findModel($id); 
+        $providerPltp = new \yii\data\ArrayDataProvider([ 
+            'allModels' => $model->pltps, 
+        ]); 
+        $providerSocialAccount = new \yii\data\ArrayDataProvider([ 
+            'allModels' => $model->socialAccounts, 
+        ]); 
+        $providerToken = new \yii\data\ArrayDataProvider([ 
+            'allModels' => $model->tokens, 
+        ]); 
+        return $this->render('view', [ 
+            'model' => $this->findModel($id), 
+            'providerPltp' => $providerPltp, 
+            'providerSocialAccount' => $providerSocialAccount, 
+            'providerToken' => $providerToken, 
+        ]); 
+    } 
+    
+    /**
+     * Displays a single User model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionAssignPltp($id)
     {
-        return $this->render('view', [
-                'model' => $this->findModel($id),
+        $modelUser = $this->findModel($id);
+        $modelsPltp = $modelUser->pltps;
+        $pltpList = ArrayHelper::map(Pltp::find()->all(), 'id', 'nama_pltp');
+        return $this->render('formAssignPltp', [
+            'modelUser' => $modelUser,
+            'modelsPltp'=>(empty($modelsPltp)) ? [new Pltp] : $modelsPltp,
+            'pltpList'=>$pltpList
         ]);
+    }
+
+    /**
+     * Creates a new User model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreate()
+    {
+        $model = new User();
+
+        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+      /**
+     * Updates an existing Customer model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionUpdate()
+    {   
+        $id = Yii::$app->request->post('User')['id'];
+        $modelUser = $this->findModel($id);
+        $modelsPltp = $modelUser->pltps;
+
+        if ($modelUser->load(Yii::$app->request->post())) {
+
+            $oldIDs = ArrayHelper::map($modelsPltp, 'id', 'id');
+            $modelsPltp = Pltp::findAll(Yii::$app->request->post('Pltp'));
+            var_dump(ArrayHelper::map($modelsPltp, 'id', 'id'));
+            $deletedIDs = array_diff($oldIDs, array_filter(ArrayHelper::map($modelsPltp, 'id', 'id')));
+
+            // validate all models
+            $valid = $modelUser->validate();
+            $valid = Model::validateMultiple($modelsPltp) && $valid;
+
+            if ($valid) {
+                $transaction = \Yii::$app->db->beginTransaction();
+                try {
+                    if ($flag = $modelUser->save(false)) {
+                        if (!empty($deletedIDs)) {
+                            Pltp::updateAll(['id_user' => NULL],['in', 'id', $oldIDs]);
+                        }
+                        foreach ($modelsPltp as $modelPltp) {
+                            \Yii::$app->db->createCommand('UPDATE pltp SET id_user = '.$modelUser->id.' WHERE id='.$modelPltp->id)->execute();
+                            
+                        }
+                    }
+                    if ($flag) {
+                        $transaction->commit();
+                        return $this->redirect(['view', 'id' => $modelUser->id]);
+                    }
+                } catch (Exception $e) {
+                    $transaction->rollBack();
+                }
+            }
+        }
+
+        
     }
 
     /**
@@ -120,144 +160,12 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($id)->deleteWithRelated();
 
         return $this->redirect(['index']);
     }
 
-    /**
-     * Login
-     * @return string
-     */
-    public function actionLogin()
-    {
-        if (!Yii::$app->getUser()->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new Login();
-        if ($model->load(Yii::$app->getRequest()->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
-            return $this->render('login', [
-                    'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Logout
-     * @return string
-     */
-    public function actionLogout()
-    {
-        Yii::$app->getUser()->logout();
-
-        return $this->goHome();
-    }
-
-    /**
-     * Signup new user
-     * @return string
-     */
-    public function actionSignup()
-    {
-        $model = new Signup();
-        if ($model->load(Yii::$app->getRequest()->post())) {
-            if ($user = $model->signup()) {
-                return $this->goHome();
-            }
-        }
-
-        return $this->render('signup', [
-                'model' => $model,
-        ]);
-    }
-
-    /**
-     * Request reset password
-     * @return string
-     */
-    public function actionRequestPasswordReset()
-    {
-        $model = new PasswordResetRequest();
-        if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
-            if ($model->sendEmail()) {
-                Yii::$app->getSession()->setFlash('success', 'Check your email for further instructions.');
-
-                return $this->goHome();
-            } else {
-                Yii::$app->getSession()->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
-            }
-        }
-
-        return $this->render('requestPasswordResetToken', [
-                'model' => $model,
-        ]);
-    }
-
-    /**
-     * Reset password
-     * @return string
-     */
-    public function actionResetPassword($token)
-    {
-        try {
-            $model = new ResetPassword($token);
-        } catch (InvalidParamException $e) {
-            throw new BadRequestHttpException($e->getMessage());
-        }
-
-        if ($model->load(Yii::$app->getRequest()->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->getSession()->setFlash('success', 'New password was saved.');
-
-            return $this->goHome();
-        }
-
-        return $this->render('resetPassword', [
-                'model' => $model,
-        ]);
-    }
-
-    /**
-     * Reset password
-     * @return string
-     */
-    public function actionChangePassword()
-    {
-        $model = new ChangePassword();
-        if ($model->load(Yii::$app->getRequest()->post()) && $model->change()) {
-            return $this->goHome();
-        }
-
-        return $this->render('change-password', [
-                'model' => $model,
-        ]);
-    }
-
-    /**
-     * Activate new user
-     * @param integer $id
-     * @return type
-     * @throws UserException
-     * @throws NotFoundHttpException
-     */
-    public function actionActivate($id)
-    {
-        /* @var $user User */
-        $user = $this->findModel($id);
-        if ($user->status == User::STATUS_INACTIVE) {
-            $user->status = User::STATUS_ACTIVE;
-            if ($user->save()) {
-                return $this->goHome();
-            } else {
-                $errors = $user->firstErrors;
-                throw new UserException(reset($errors));
-            }
-        }
-        return $this->goHome();
-    }
-
+    
     /**
      * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -269,6 +177,46 @@ class UserController extends Controller
     {
         if (($model = User::findOne($id)) !== null) {
             return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    /**
+    * Action to load a tabular form grid
+    * for SocialAccount
+    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+    *
+    * @return mixed
+    */
+    public function actionAddSocialAccount()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('SocialAccount');
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formSocialAccount', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    /**
+    * Action to load a tabular form grid
+    * for Token
+    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+    *
+    * @return mixed
+    */
+    public function actionAddToken()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('Token');
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formToken', ['row' => $row]);
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }

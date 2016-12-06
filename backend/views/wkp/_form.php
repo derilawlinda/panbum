@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Wkp */
@@ -9,52 +9,47 @@ use yii\widgets\ActiveForm;
 
 \mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
     'viewParams' => [
-        'class' => 'Unit', 
-        'relID' => 'unit', 
-        'value' => \yii\helpers\Json::encode($model->units),
+        'class' => 'Pltp', 
+        'relID' => 'pltp', 
+        'value' => \yii\helpers\Json::encode($model->pltps),
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
 ]);
 ?>
-
+<?php
+ 
+$this->registerJs(
+   '$("document").ready(function(){ 
+        $("#new_wkp").on("pjax:end", function() {
+            $.pjax.reload({container:"#kv-pjax-container-wkp"});  //Reload GridView
+        });
+    });'
+);
+?>
 <div class="wkp-form">
-
-    <?php $form = ActiveForm::begin(); ?>
+<?php yii\widgets\Pjax::begin(['id' => 'new_wkp']) ?>
+    <?php $form = ActiveForm::begin([
+        'layout'=>'horizontal'
+    ]); ?>
 
     <?= $form->errorSummary($model); ?>
 
-    <?= $form->field($model, 'id_wkp')->textInput(['maxlength' => true, 'placeholder' => 'Id Wkp']) ?>
+    <?= $form->field($model, 'nama')->textInput(['maxlength' => true, 'placeholder' => 'Nama WKP'])->label("Nama WKP") ?>
 
-    <?= $form->field($model, 'nama')->textInput(['maxlength' => true, 'placeholder' => 'Nama']) ?>
+    <?= $form->field($model, 'skwkp')->textInput(['maxlength' => true, 'placeholder' => 'SK WKP'])->label("SK WKP") ?>
 
-    <?= $form->field($model, 'lapangan')->textInput(['maxlength' => true, 'placeholder' => 'Lapangan']) ?>
+     <?= $form->field($model, 'luas')->textInput(['placeholder' => 'Luas (Ha)'])->label("Luas (Ha)") ?>
 
-    <?= $form->field($model, 'peta')->textInput(['maxlength' => true, 'placeholder' => 'Peta']) ?>
+    <?= $form->field($model, 'pem_izin')->textInput(['maxlength' => true, 'placeholder' => 'Pemegang Izin'])->label("Pemegang Izin") ?>
 
-    <?php
-    $forms = [
-        [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('Unit'),
-            'content' => $this->render('_formUnit', [
-                'row' => \yii\helpers\ArrayHelper::toArray($model->units),
-            ]),
-        ],
-    ];
-    echo kartik\tabs\TabsX::widget([
-        'items' => $forms,
-        'position' => kartik\tabs\TabsX::POS_ABOVE,
-        'encodeLabels' => false,
-        'pluginOptions' => [
-            'bordered' => true,
-            'sideways' => true,
-            'enableCache' => false,
-        ],
-    ]);
-    ?>
+   <?= $form->field($model, 'remark')->textarea(['maxlength' => true, 'placeholder' => 'Catatan','rows'=>3])->label("Catatan") ?>
     <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-4 pull-right">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>
+    <?php yii\widgets\Pjax::end() ?>
 
 </div>

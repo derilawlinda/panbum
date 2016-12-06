@@ -51,13 +51,18 @@ $this->registerJs($search);
 	
 <?php 
     $gridColumn = [
-        ['class' => 'yii\grid\SerialColumn'],
-        'id_unit',
+         ['class' => 'yii\grid\SerialColumn',
+                 'header'=> 'No.'],
+        [
+                 'attribute' => 'id_unit',
+                 'visible' => false
+                    
+                ],
         [
                 'attribute' => 'namawkp',
                 'label' => 'WKP',
                 'value' => function($model){
-                    return $model->pltp->wkp->nama;
+                    return $model->unit->pltp->wkp->nama ? $model->unit->pltp->wkp->nama  : "" ;
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => \yii\helpers\ArrayHelper::map(\backend\models\Wkp::find()->asArray()->all(), 'nama', 'nama'),
@@ -70,7 +75,7 @@ $this->registerJs($search);
                 'attribute' => 'pltpname',
                 'label' => 'PLTP',
                 'value' => function($model){
-                    return $model->pltp->nama_pltp;
+                    return $model->unit->pltp->nama_pltp;
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => \yii\helpers\ArrayHelper::map(\backend\models\Pltp::find()->asArray()->all(), 'id', 'id'),
@@ -79,7 +84,13 @@ $this->registerJs($search);
                 ],
                 'filterInputOptions' => ['placeholder' => 'Pltp', 'id' => 'grid--id_pltp']
             ],
-		'no_unit',
+            [
+                  'attribute'=>'no_unit',
+                  'label'=>"Unit",
+                 'value' => function($model) {
+                        return $model->unit->no_unit;
+                    }
+            ],
 		'tahap',
             [
                     'attribute' => 'status',
@@ -87,7 +98,7 @@ $this->registerJs($search);
                     'format' => 'raw',
                     'value'=>function ($data) {
                             if($data->status == "S") {
-                                return "<span class='label label-warning'>Verifikasi</span>";
+                                return "<span class='label label-warning'>Proses Verifikasi</span>";
                              }elseif($data->status == "A"){
                                 return "<span class='label label-success'>Terverfikasi</span>";
                              }else{
@@ -100,11 +111,15 @@ $this->registerJs($search);
 		[
                 'attribute' => 'updated_at',
                 'label' => 'Update Terakhir',
+                'value' => function($data) {
+                        return date('d-m-Y H:m:s', strtotime($data->created_at));
+                    }
 				
                
         ],
 		[
                 'attribute' => 'created_at',
+                'hidden'=>true,
                 'label' => 'Created',
 				'value' => function($data){
                     return date('Y F', strtotime($data->created_at));

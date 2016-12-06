@@ -82,8 +82,8 @@ class PekUjimonsumurQuery extends \yii\db\ActiveQuery {
     
     public function latestidbymonthyear($id_unit, $month, $year) {
 
-        $query = PekCod::find()
-                ->select('id_transmisi')
+        $query = PekUjimonsumur::find()
+                ->select('id_ujimonsumur')
                 ->where(['id_unit' => $id_unit])
                 ->andWhere('DATE_FORMAT(submitted_date, "%Y-%m") <= ' . '"' . $year . '-' . $month . '"')
                 ->orderBy('submitted_date DESC')
@@ -92,7 +92,7 @@ class PekUjimonsumurQuery extends \yii\db\ActiveQuery {
 
 
         if (count($query) > 0) {
-            return $query->id_transmisi;
+            return $query->id_ujimonsumur;
         } else {
             return 0;
         }

@@ -15,10 +15,11 @@ class PekKelayakan extends BasePekKelayakan
     public function rules()
     {
         return array_replace_recursive(parent::rules(),
-	    [
-            [['id_kelayakan', 'id_unit', 'status', 'confirmed'], 'integer'],
-            [['submitted_date', 'confirmed_date','file'], 'safe'],
-            [['target', 'capaian', 'remark'], 'string', 'max' => 255]
+	   [
+            [['id_unit', 'status', 'confirmed'], 'integer'],
+            [['submitted_date', 'confirmed_date'], 'safe'],
+            [['target', 'capaian', 'remark'], 'string', 'max' => 255],
+            [['file'], 'safe']
         ]);
     }
 	

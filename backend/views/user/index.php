@@ -1,59 +1,82 @@
 <?php
 
-use yii\helpers\Html;
-use yii\grid\GridView;
-use mdm\admin\components\Helper;
-
 /* @var $this yii\web\View */
-/* @var $searchModel mdm\admin\models\searchs\User */
+/* @var $searchModel backend\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = "Users";
+use yii\helpers\Html;
+use kartik\export\ExportMenu;
+use kartik\grid\GridView;
+
+$this->title = 'User';
 $this->params['breadcrumbs'][] = $this->title;
+$search = "$('.search-button').click(function(){
+	$('.search-form').toggle(1000);
+	return false;
+});";
+$this->registerJs($search);
 ?>
 <div class="user-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?=
-    GridView::widget([
+    <p>
+        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Advance Search', '#', ['class' => 'btn btn-info search-button']) ?>
+    </p>
+    <div class="search-form" style="display:none">
+        <?=  $this->render('_search', ['model' => $searchModel]); ?>
+    </div>
+    <?php 
+    $gridColumn = [
+        ['class' => 'yii\grid\SerialColumn'],
+        ['attribute' => 'id', 'visible' => false],
+        'username',
+        'email:email',
+        'password_hash',
+        'auth_key',
+        'confirmed_at',
+        'unconfirmed_email:email',
+        'blocked_at',
+        'registration_ip',
+        'flags',
+        [
+            'class' => 'yii\grid\ActionColumn',
+        ],
+    ]; 
+    ?>
+    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            'username',
-            'email:email',
-            'created_at:date',
-            [
-                'attribute' => 'status',
-                'value' => function($model) {
-                    return $model->status == 0 ? 'Inactive' : 'Active';
-                },
-                'filter' => [
-                    0 => 'Inactive',
-                    10 => 'Active'
-                ]
-            ],
-            [
-                'class' => 'yii\grid\ActionColumn',
-                'template' => Helper::filterActionColumn(['view', 'activate', 'delete']),
-                'buttons' => [
-                    'activate' => function($url, $model) {
-                        if ($model->status == 10) {
-                            return '';
-                        }
-                        $options = [
-                            'title' => Yii::t('rbac-admin', 'Activate'),
-                            'aria-label' => Yii::t('rbac-admin', 'Activate'),
-                            'data-confirm' => Yii::t('rbac-admin', 'Are you sure you want to activate this user?'),
-                            'data-method' => 'post',
-                            'data-pjax' => '0',
-                        ];
-                        return Html::a('<span class="glyphicon glyphicon-ok"></span>', $url, $options);
-                    }
-                    ]
+        'columns' => $gridColumn,
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-user']],
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),
+        ],
+        'export' => false,
+        // your toolbar can include the additional full export menu
+        'toolbar' => [
+            '{export}',
+            ExportMenu::widget([
+                'dataProvider' => $dataProvider,
+                'columns' => $gridColumn,
+                'target' => ExportMenu::TARGET_BLANK,
+                'fontAwesome' => true,
+                'dropdownOptions' => [
+                    'label' => 'Full',
+                    'class' => 'btn btn-default',
+                    'itemsBefore' => [
+                        '<li class="dropdown-header">Export All Data</li>',
+                    ],
                 ],
-            ],
-        ]);
-        ?>
+                'exportConfig' => [
+                    ExportMenu::FORMAT_PDF => false
+                ]
+            ]) ,
+        ],
+    ]); ?>
+
 </div>

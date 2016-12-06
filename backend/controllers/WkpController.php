@@ -32,12 +32,18 @@ class WkpController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Wkp::find(),
-        ]);
-
+        
+        $model = new Wkp();
+        $wkpSearchModel = new \backend\models\WkpSearch();
+        $dataProvider =  $wkpSearchModel->search(Yii::$app->request->queryParams);
+        if ($model->load(Yii::$app->request->post()) && $model->save())
+        {
+            $model = new Wkp(); //reset model
+        }
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'model'=>$model,
+            'wkpSearchModel'=> $wkpSearchModel
         ]);
     }
 
@@ -49,12 +55,12 @@ class WkpController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        $providerUnit = new \yii\data\ArrayDataProvider([
-            'allModels' => $model->units,
+        $providerPltp = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->pltps,
         ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'providerUnit' => $providerUnit,
+            'providerPltp' => $providerPltp,
         ]);
     }
 
@@ -86,7 +92,7 @@ class WkpController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+        if ($model->loadAll(Yii::$app->request->post(),['pltps']) && $model->saveAll(['pltps'])) {
             return $this->redirect(['view', 'id' => $model->id_wkp]);
         } else {
             return $this->render('update', [
@@ -127,19 +133,19 @@ class WkpController extends Controller
     
     /**
     * Action to load a tabular form grid
-    * for Unit
+    * for Pltp
     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
     *
     * @return mixed
     */
-    public function actionAddUnit()
+    public function actionAddPltp()
     {
         if (Yii::$app->request->isAjax) {
-            $row = Yii::$app->request->post('Unit');
+            $row = Yii::$app->request->post('Pltp');
             if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
                 $row[] = [];
-            return $this->renderAjax('_formUnit', ['row' => $row]);
+            return $this->renderAjax('_formPltp', ['row' => $row]);
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }

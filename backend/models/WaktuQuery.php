@@ -52,7 +52,7 @@ class WaktuQuery extends \yii\db\ActiveQuery {
 	   $query = Waktu::find()
                                 ->select('id_waktu')
 				->where(['id_unit' => $id_unit])
-                                ->andWhere('DATE_FORMAT(createad_at, "%Y-%m") <= '.'"'.$year.'-'.$month.'"')
+                                ->andWhere('DATE_FORMAT(created_at, "%Y-%m") <= '.'"'.$year.'-'.$month.'"')
 				->orderBy('created_at DESC')
 				->limit(1)
 				->one();

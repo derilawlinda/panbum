@@ -49,7 +49,7 @@ class PekOverallepcQuery extends \yii\db\ActiveQuery {
     public function latestidbymonthyear($id_unit, $month, $year) {
 
         $query = PekOverallepc::find()
-                ->select('id_cod')
+                ->select('id')
                 ->where(['id_unit' => $id_unit])
                 ->andWhere('DATE_FORMAT(submitted_date, "%Y-%m") <= ' . '"' . $year . '-' . $month . '"')
                 ->orderBy('submitted_date DESC')

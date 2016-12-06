@@ -1,0 +1,326 @@
+2016-11-28 19:34:51 [::1][-][-][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "". in C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\base\Module.php:460
+Stack trace:
+#0 C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\web\Application.php(87): yii\base\Module->runAction('', Array)
+#1 C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\panbum\index.php(16): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\web\Application.php:99
+Stack trace:
+#0 C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\panbum\index.php(16): yii\base\Application->run()
+#2 {main}
+2016-11-28 19:34:51 [::1][-][-][info][application] $_COOKIE = [
+    '_csrf-backend' => '0a350a2c9201f4a94d438997eeeece9b367c544b62420253849d16fe2cc664f4a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"dHH9cQlRdQcM-2wfk3f6BtYLfXdZ5A1T\";}'
+    'advanced-backend' => 'er9n6vla7uoh226gcvuqv61k56'
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost:8080'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8'
+    'HTTP_COOKIE' => '_csrf-backend=0a350a2c9201f4a94d438997eeeece9b367c544b62420253849d16fe2cc664f4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22dHH9cQlRdQcM-2wfk3f6BtYLfXdZ5A1T%22%3B%7D; advanced-backend=er9n6vla7uoh226gcvuqv61k56'
+    'PATH' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Inprise\\vbroker\\bin;c:\\windows\\system32;C:\\ant/bin;C:\\Ruby200-x64\\bin;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;C:\\Program Files\\nodejs\\;C:\\Ruby21-x64\\bin\\;C:\\Program Files (x86)\\ArcGIS\\EsriProductionMapping\\Desktop10.2\\Bin;C:\\Program Files (x86)\\ArcGIS\\MaritimeCharting\\Desktop10.2\\Bin;C:\\Program Files\\Samsung\\AllShare Framework DMS\\1.3.23\\;C:\\Program Files\\Samsung\\AllShare Framework DMS\\1.3.23\\64bit\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\OSGeo4W\\bin;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.18 (Win32) OpenSSL/1.0.2e PHP/7.0.1 Server at localhost Port 8080</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.18 (Win32) OpenSSL/1.0.2e PHP/7.0.1'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '8080'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/panbum/index.php'
+    'REMOTE_PORT' => '60120'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/panbum/'
+    'SCRIPT_NAME' => '/panbum/index.php'
+    'PHP_SELF' => '/panbum/index.php'
+    'REQUEST_TIME_FLOAT' => 1480358091.642
+    'REQUEST_TIME' => 1480358091
+]
+2016-11-28 19:34:55 [::1][-][-][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "unit/verifikasi". in C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\base\Module.php:460
+Stack trace:
+#0 C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\web\Application.php(87): yii\base\Module->runAction('unit/verifikasi', Array)
+#1 C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\panbum\index.php(16): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\web\Application.php:99
+Stack trace:
+#0 C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\panbum\index.php(16): yii\base\Application->run()
+#2 {main}
+2016-11-28 19:34:55 [::1][-][-][info][application] $_GET = [
+    'r' => 'unit/verifikasi'
+]
+
+$_COOKIE = [
+    '_csrf-backend' => '0a350a2c9201f4a94d438997eeeece9b367c544b62420253849d16fe2cc664f4a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"dHH9cQlRdQcM-2wfk3f6BtYLfXdZ5A1T\";}'
+    'advanced-backend' => 'er9n6vla7uoh226gcvuqv61k56'
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost:8080'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_REFERER' => 'http://localhost:8080/panbum/index.php?r=unit%2Findex'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8'
+    'HTTP_COOKIE' => '_csrf-backend=0a350a2c9201f4a94d438997eeeece9b367c544b62420253849d16fe2cc664f4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22dHH9cQlRdQcM-2wfk3f6BtYLfXdZ5A1T%22%3B%7D; advanced-backend=er9n6vla7uoh226gcvuqv61k56'
+    'PATH' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Inprise\\vbroker\\bin;c:\\windows\\system32;C:\\ant/bin;C:\\Ruby200-x64\\bin;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;C:\\Program Files\\nodejs\\;C:\\Ruby21-x64\\bin\\;C:\\Program Files (x86)\\ArcGIS\\EsriProductionMapping\\Desktop10.2\\Bin;C:\\Program Files (x86)\\ArcGIS\\MaritimeCharting\\Desktop10.2\\Bin;C:\\Program Files\\Samsung\\AllShare Framework DMS\\1.3.23\\;C:\\Program Files\\Samsung\\AllShare Framework DMS\\1.3.23\\64bit\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\OSGeo4W\\bin;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.18 (Win32) OpenSSL/1.0.2e PHP/7.0.1 Server at localhost Port 8080</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.18 (Win32) OpenSSL/1.0.2e PHP/7.0.1'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '8080'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/panbum/index.php'
+    'REMOTE_PORT' => '60121'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=unit%2Fverifikasi'
+    'REQUEST_URI' => '/panbum/index.php?r=unit%2Fverifikasi'
+    'SCRIPT_NAME' => '/panbum/index.php'
+    'PHP_SELF' => '/panbum/index.php'
+    'REQUEST_TIME_FLOAT' => 1480358095.923
+    'REQUEST_TIME' => 1480358095
+]
+2016-11-28 19:34:56 [::1][-][-][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "unit/index". in C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\base\Module.php:460
+Stack trace:
+#0 C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\web\Application.php(87): yii\base\Module->runAction('unit/index', Array)
+#1 C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\panbum\index.php(16): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\web\Application.php:99
+Stack trace:
+#0 C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\panbum\index.php(16): yii\base\Application->run()
+#2 {main}
+2016-11-28 19:34:56 [::1][-][-][info][application] $_GET = [
+    'r' => 'unit/index'
+]
+
+$_COOKIE = [
+    '_csrf-backend' => '0a350a2c9201f4a94d438997eeeece9b367c544b62420253849d16fe2cc664f4a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"dHH9cQlRdQcM-2wfk3f6BtYLfXdZ5A1T\";}'
+    'advanced-backend' => 'er9n6vla7uoh226gcvuqv61k56'
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost:8080'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_REFERER' => 'http://localhost:8080/panbum/index.php?r=unit%2Fverifikasi'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8'
+    'HTTP_COOKIE' => '_csrf-backend=0a350a2c9201f4a94d438997eeeece9b367c544b62420253849d16fe2cc664f4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22dHH9cQlRdQcM-2wfk3f6BtYLfXdZ5A1T%22%3B%7D; advanced-backend=er9n6vla7uoh226gcvuqv61k56'
+    'PATH' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Inprise\\vbroker\\bin;c:\\windows\\system32;C:\\ant/bin;C:\\Ruby200-x64\\bin;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;C:\\Program Files\\nodejs\\;C:\\Ruby21-x64\\bin\\;C:\\Program Files (x86)\\ArcGIS\\EsriProductionMapping\\Desktop10.2\\Bin;C:\\Program Files (x86)\\ArcGIS\\MaritimeCharting\\Desktop10.2\\Bin;C:\\Program Files\\Samsung\\AllShare Framework DMS\\1.3.23\\;C:\\Program Files\\Samsung\\AllShare Framework DMS\\1.3.23\\64bit\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\OSGeo4W\\bin;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.18 (Win32) OpenSSL/1.0.2e PHP/7.0.1 Server at localhost Port 8080</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.18 (Win32) OpenSSL/1.0.2e PHP/7.0.1'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '8080'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/panbum/index.php'
+    'REMOTE_PORT' => '60122'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=unit%2Findex'
+    'REQUEST_URI' => '/panbum/index.php?r=unit%2Findex'
+    'SCRIPT_NAME' => '/panbum/index.php'
+    'PHP_SELF' => '/panbum/index.php'
+    'REQUEST_TIME_FLOAT' => 1480358096.346
+    'REQUEST_TIME' => 1480358096
+]
+2016-11-28 19:34:57 [::1][-][-][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "unit/index". in C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\base\Module.php:460
+Stack trace:
+#0 C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\web\Application.php(87): yii\base\Module->runAction('unit/index', Array)
+#1 C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\panbum\index.php(16): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\web\Application.php:99
+Stack trace:
+#0 C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\panbum\index.php(16): yii\base\Application->run()
+#2 {main}
+2016-11-28 19:34:57 [::1][-][-][info][application] $_GET = [
+    'r' => 'unit/index'
+]
+
+$_COOKIE = [
+    '_csrf-backend' => '0a350a2c9201f4a94d438997eeeece9b367c544b62420253849d16fe2cc664f4a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"dHH9cQlRdQcM-2wfk3f6BtYLfXdZ5A1T\";}'
+    'advanced-backend' => 'er9n6vla7uoh226gcvuqv61k56'
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost:8080'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_REFERER' => 'http://localhost:8080/panbum/index.php?r=unit%2Fupdate&id_unit=5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8'
+    'HTTP_COOKIE' => '_csrf-backend=0a350a2c9201f4a94d438997eeeece9b367c544b62420253849d16fe2cc664f4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22dHH9cQlRdQcM-2wfk3f6BtYLfXdZ5A1T%22%3B%7D; advanced-backend=er9n6vla7uoh226gcvuqv61k56'
+    'PATH' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Inprise\\vbroker\\bin;c:\\windows\\system32;C:\\ant/bin;C:\\Ruby200-x64\\bin;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;C:\\Program Files\\nodejs\\;C:\\Ruby21-x64\\bin\\;C:\\Program Files (x86)\\ArcGIS\\EsriProductionMapping\\Desktop10.2\\Bin;C:\\Program Files (x86)\\ArcGIS\\MaritimeCharting\\Desktop10.2\\Bin;C:\\Program Files\\Samsung\\AllShare Framework DMS\\1.3.23\\;C:\\Program Files\\Samsung\\AllShare Framework DMS\\1.3.23\\64bit\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\OSGeo4W\\bin;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.18 (Win32) OpenSSL/1.0.2e PHP/7.0.1 Server at localhost Port 8080</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.18 (Win32) OpenSSL/1.0.2e PHP/7.0.1'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '8080'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/panbum/index.php'
+    'REMOTE_PORT' => '60123'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=unit/index'
+    'REQUEST_URI' => '/panbum/index.php?r=unit/index'
+    'SCRIPT_NAME' => '/panbum/index.php'
+    'PHP_SELF' => '/panbum/index.php'
+    'REQUEST_TIME_FLOAT' => 1480358097.012
+    'REQUEST_TIME' => 1480358097
+]
+2016-11-28 19:34:58 [::1][-][-][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "unit/verifikasi-data". in C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\base\Module.php:460
+Stack trace:
+#0 C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\web\Application.php(87): yii\base\Module->runAction('unit/verifikasi...', Array)
+#1 C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\panbum\index.php(16): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\web\Application.php:99
+Stack trace:
+#0 C:\xampp\htdocs\panbum\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\panbum\index.php(16): yii\base\Application->run()
+#2 {main}
+2016-11-28 19:34:58 [::1][-][-][info][application] $_GET = [
+    'r' => 'unit/verifikasi-data'
+    'id_unit' => '5'
+]
+
+$_COOKIE = [
+    '_csrf-backend' => '0a350a2c9201f4a94d438997eeeece9b367c544b62420253849d16fe2cc664f4a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"dHH9cQlRdQcM-2wfk3f6BtYLfXdZ5A1T\";}'
+    'advanced-backend' => 'er9n6vla7uoh226gcvuqv61k56'
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost:8080'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8'
+    'HTTP_COOKIE' => '_csrf-backend=0a350a2c9201f4a94d438997eeeece9b367c544b62420253849d16fe2cc664f4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22dHH9cQlRdQcM-2wfk3f6BtYLfXdZ5A1T%22%3B%7D; advanced-backend=er9n6vla7uoh226gcvuqv61k56'
+    'PATH' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Inprise\\vbroker\\bin;c:\\windows\\system32;C:\\ant/bin;C:\\Ruby200-x64\\bin;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;C:\\Program Files\\nodejs\\;C:\\Ruby21-x64\\bin\\;C:\\Program Files (x86)\\ArcGIS\\EsriProductionMapping\\Desktop10.2\\Bin;C:\\Program Files (x86)\\ArcGIS\\MaritimeCharting\\Desktop10.2\\Bin;C:\\Program Files\\Samsung\\AllShare Framework DMS\\1.3.23\\;C:\\Program Files\\Samsung\\AllShare Framework DMS\\1.3.23\\64bit\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\OSGeo4W\\bin;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.18 (Win32) OpenSSL/1.0.2e PHP/7.0.1 Server at localhost Port 8080</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.18 (Win32) OpenSSL/1.0.2e PHP/7.0.1'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '8080'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/panbum/index.php'
+    'REMOTE_PORT' => '60125'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=unit%2Fverifikasi-data&id_unit=5'
+    'REQUEST_URI' => '/panbum/index.php?r=unit%2Fverifikasi-data&id_unit=5'
+    'SCRIPT_NAME' => '/panbum/index.php'
+    'PHP_SELF' => '/panbum/index.php'
+    'REQUEST_TIME_FLOAT' => 1480358097.999
+    'REQUEST_TIME' => 1480358097
+]

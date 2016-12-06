@@ -61,7 +61,7 @@ class PekConstructionQuery extends \yii\db\ActiveQuery
 				
 		
 		if(count($query)>0){
-			return $query->id_cod;
+			return $query->id;
 		}else{
 			return 0;
 		}

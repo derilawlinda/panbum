@@ -56,6 +56,49 @@ class UnitDetailIzin extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    
+    public function afterFind ()
+    {
+            // convert to display format
+			
+
+		($this->iup_awal == "1970-01-01" || $this->iup_awal == "") ? $this->iup_awal = "" : $this->iup_awal = date ('d-m-Y', strtotime ($this->iup_awal));
+		($this->iup_akhir == "1970-01-01" || $this->iup_akhir == "") ? $this->iup_akhir = "" : $this->iup_akhir = date ('d-m-Y', strtotime ($this->iup_akhir));
+		($this->ijl_awal == "1970-01-01" || $this->ijl_awal == "") ? $this->ijl_awal = "" : $this->ijl_awal = date ('d-m-Y', strtotime ($this->ijl_awal));
+		($this->ijl_akhir == "1970-01-01" || $this->ijl_akhir == "") ? $this->ijl_akhir = "" : $this->ijl_akhir = date ('d-m-Y', strtotime ($this->ijl_akhir));
+		($this->ippkh_awal == "1970-01-01" || $this->ippkh_awal == "") ? $this->ippkh_awal = "" : $this->ippkh_awal = date ('d-m-Y', strtotime ($this->ippkh_awal));
+		($this->ippkh_akhir == "1970-01-01" || $this->ippkh_akhir == "") ? $this->ippkh_akhir = "" : $this->ippkh_akhir = date ('d-m-Y', strtotime ($this->ippkh_akhir));
+		($this->imb_awal == "1970-01-01" || $this->imb_awal == "") ? $this->imb_awal = "" : $this->imb_awal = date ('d-m-Y', strtotime ($this->imb_awal));
+		($this->imb_akhir == "1970-01-01" || $this->imb_akhir == "") ? $this->imb_akhir = "" : $this->imb_akhir = date ('d-m-Y', strtotime ($this->imb_akhir));
+		($this->amdal_awal == "1970-01-01" || $this->amdal_awal == "") ? $this->amdal_awal = "" : $this->amdal_awal = date ('d-m-Y', strtotime ($this->amdal_awal));
+		($this->amdal_akhir == "1970-01-01" || $this->amdal_akhir == "") ? $this->amdal_akhir = "" : $this->amdal_akhir = date ('d-m-Y', strtotime ($this->amdal_akhir));
+		($this->imka_awal == "1970-01-01" || $this->imka_awal == "") ? $this->imka_awal = "" : $this->imka_awal = date ('d-m-Y', strtotime ($this->imka_awal));
+		($this->imka_akhir == "1970-01-01" || $this->imka_akhir == "") ? $this->imka_akhir = "" : $this->imka_akhir = date ('d-m-Y', strtotime ($this->imka_akhir));
+		($this->simaksi_awal == "1970-01-01" || $this->simaksi_awal == "") ? $this->simaksi_awal = "" : $this->simaksi_awal = date ('d-m-Y', strtotime ($this->simaksi_awal));
+		($this->simaksi_akhir == "1970-01-01" || $this->simaksi_akhir == "") ? $this->simaksi_akhir = "" : $this->simaksi_akhir = date ('d-m-Y', strtotime ($this->simaksi_akhir));
+				       
+        parent::afterFind();
+    }
+    public function beforeSave($insert)
+    {
+        // convert to storage format
+        
+        $this->iup_awal ? $this->iup_awal = \DateTime::createFromFormat('d-m-Y', $this->iup_awal)->format('Y-m-d') : "";
+        $this->iup_akhir ? $this->iup_akhir = \DateTime::createFromFormat('d-m-Y', $this->iup_akhir)->format('Y-m-d') : "";
+        $this->ijl_awal? $this->ijl_awal  = \DateTime::createFromFormat('d-m-Y', $this->ijl_awal)->format('Y-m-d'):"";
+        $this->ijl_akhir ? $this->ijl_akhir = \DateTime::createFromFormat('d-m-Y', $this->ijl_akhir)->format('Y-m-d'):"";
+        $this->ippkh_awal ? $this->ippkh_awal= \DateTime::createFromFormat('d-m-Y', $this->ippkh_awal)->format('Y-m-d'):"";
+        $this->ippkh_akhir ?  $this->ippkh_akhir = \DateTime::createFromFormat('d-m-Y', $this->ippkh_akhir)->format('Y-m-d'):"";
+        $this->imb_awal ? $this->imb_awal = \DateTime::createFromFormat('d-m-Y', $this->imb_awal)->format('Y-m-d'):"";
+        $this->imb_akhir ? $this->imb_akhir= \DateTime::createFromFormat('d-m-Y', $this->imb_akhir)->format('Y-m-d'):"";
+        $this->amdal_awal ? $this->amdal_awal = \DateTime::createFromFormat('d-m-Y', $this->amdal_awal)->format('Y-m-d'):"";
+        $this->amdal_akhir  ? $this->amdal_akhir = \DateTime::createFromFormat('d-m-Y', $this->amdal_akhir)->format('Y-m-d'):"";
+        $this->imka_awal ? $this->imka_awal = \DateTime::createFromFormat('d-m-Y', $this->imka_awal)->format('Y-m-d'):"";
+        $this->imka_akhir ? $this->imka_akhir = \DateTime::createFromFormat('d-m-Y', $this->imka_akhir)->format('Y-m-d'):"";
+        $this->simaksi_awal ? $this->simaksi_awal = \DateTime::createFromFormat('d-m-Y', $this->simaksi_awal)->format('Y-m-d'):"";
+        $this->simaksi_akhir ? $this->simaksi_akhir = \DateTime::createFromFormat('d-m-Y', $this->simaksi_akhir)->format('Y-m-d'):"";
+        return parent::beforeSave($insert);
+    }
     public function rules()
     {
         return [

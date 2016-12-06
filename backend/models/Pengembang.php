@@ -17,6 +17,7 @@ class Pengembang extends BasePengembang
         return array_replace_recursive(parent::rules(),
 	    [
             [['tgl'], 'safe'],
+            [['status'], 'integer'],
             [['nama', 'alamat', 'dirut', 'user', 'izin', 'remark'], 'string', 'max' => 255]
         ]);
     }

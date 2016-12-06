@@ -51,7 +51,7 @@ class FotoQuery extends \yii\db\ActiveQuery
      public function latestidbymonthyear($id_unit,$month,$year)
     {
        
-	   $query = UnitDetailTanah::find()
+	   $query = Foto::find()
                                 ->select('id_foto')
 				->where(['id_unit' => $id_unit])
                                 ->andWhere('DATE_FORMAT(uploaded_date, "%Y-%m") <= '.'"'.$year.'-'.$month.'"')
@@ -66,4 +66,24 @@ class FotoQuery extends \yii\db\ActiveQuery
 			return 0;
 		}
 	}
+        
+    public function latestidthismonthyearbyunit($id_unit)
+    {
+           $year = date("Y");
+           $month = date('m');
+	   $query = Foto::find()
+                                ->select('id_foto')
+				->where(['id_unit' => $id_unit])
+                                ->andWhere('DATE_FORMAT(uploaded_date, "%Y-%m") = '.'"'.$year.'-'.$month.'"')
+				->orderBy('uploaded_date DESC')
+				->limit(1)
+				->one();
+				
+		
+		if(count($query)>0){
+			return $query->id_foto;
+		}else{
+			return 0;
+		}
+	}    
 }
